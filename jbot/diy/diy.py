@@ -63,7 +63,8 @@ async def jd_cjhy_activityId():
         """
         if "jd_cjhy_activityId" in event.message.text:
             name = 'cj组队瓜分京豆'
-            cmd = f'{TASK_CMD} jd_cjzdgf.js now'
+            cmdtext = f'task jd_cjzdgf.js now'
+            await cmd(cmdtext)
         else:
             return
 
