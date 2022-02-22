@@ -140,7 +140,7 @@ start() {
 }
 
 main() {
-  diybot
+  #diybot
   fix
   file_diybotset
   file_user
