@@ -150,10 +150,14 @@ async def activityID(event):
         try:
             if "jd_zdjr_activity" in event.message.text:
                 from ..diy.diy import smiek_jd_zdjr
-                await smiek_jd_zdjr()
+                cmdtext = f"/cmd task smiek_jd_zdjr.js now"
+                await client.send_message(bot_id, cmdtext)
+                #await smiek_jd_zdjr()
             elif "jd_cjhy_activityId" in event.message.text:
                 from ..diy.diy import jd_cjhy_activityId
-                await jd_cjhy_activityId()
+                cmdtext = f"/cmd task jd_cjzdgf.js now"
+                await client.send_message(bot_id, cmdtext)
+                #await jd_cjhy_activityId()
             elif "FAV_SHOP_ID" in event.message.text:
                 from ..diy.diy import jd_fav_shop_gift
                 await jd_fav_shop_gift()
