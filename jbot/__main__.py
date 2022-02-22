@@ -6,7 +6,7 @@ from . import jdbot, chat_id, logger, LOG_DIR, BOT_SET_JSON_FILE_USER, BOT_SET_J
 from .utils import load_module
 import os
 import random
-from .bot.update import version, botlog
+#from .bot.update import version, botlog
 BOT_UP_LOG = f'{LOG_DIR}/bot/up.log'
 BOT_M_DIR = f'{BOT_DIR}/bot/'
 BOT_D_DIR = f'{BOT_DIR}/diy/'
