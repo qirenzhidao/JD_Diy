@@ -95,7 +95,7 @@ async def red(event):
 
 
 #@client.on(events.NewMessage(chats=[-1001659538110, bot_id], pattern=r'export\s(jd_zdjr_activity|jd_cjhy_activity|FAV|RUSH_LZCLIENT).*=(".*"|\'.*\')'))
-@client.on(events.NewMessage(chats=[-1001659538110, bot_id], pattern=r'.*组队瓜分.*')
+@client.on(events.NewMessage(chats=[-1001659538110, bot_id], pattern= r".*组队瓜分.*")
 async def activityID(event):
     try:
         text = event.message.text
