@@ -94,7 +94,8 @@ async def red(event):
         logger.error(f"错误--->{str(e)}")
 
 
-@client.on(events.NewMessage(chats=[-1001659538110, bot_id], pattern=r'export\s(jd_zdjr_activity|jd_cjhy_activity|FAV|RUSH_LZCLIENT).*=(".*"|\'.*\')'))
+#@client.on(events.NewMessage(chats=[-1001659538110, bot_id], pattern=r'export\s(jd_zdjr_activity|jd_cjhy_activity|FAV|RUSH_LZCLIENT).*=(".*"|\'.*\')'))
+@client.on(events.NewMessage(chats=[-1001659538110, bot_id], pattern=r'.*组队瓜分.*')
 async def activityID(event):
     try:
         text = event.message.text
