@@ -99,18 +99,17 @@ async def red(event):
 async def activityID(event):
     try:
         text = event.message.text
-        name = "组队瓜分"
-#        if "jd_zdjr_activity" in text:
-#            name = "组队瓜分1"
-#        elif "jd_cjhy_activity" in text:
-#            name = "组队瓜分2"
-#        elif "FAV_SHOP" in text:
-#            name = "关注有礼"
-#        elif "RUSH_LZCLIENT" in text:
-#            name = "转盘抽奖"
-#        else:
-#            return
-#        msg = await jdbot.send_message(chat_id, f'【监控】 监测到`{name}` 环境变量！')
+        if "jd_zdjr_activity" in text:
+            name = "组队瓜分1"
+        elif "jd_cjhy_activity" in text:
+            name = "组队瓜分2"
+        elif "FAV_SHOP" in text:
+            name = "关注有礼"
+        elif "RUSH_LZCLIENT" in text:
+            name = "转盘抽奖"
+        else:
+            return
+        msg = await jdbot.send_message(chat_id, f'【监控】 监测到`{name}` 环境变量！')
         messages = event.message.text.split("\n")
         change = ""
         for message in messages:
