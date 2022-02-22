@@ -151,12 +151,12 @@ async def activityID(event):
         try:
             if "jd_zdjr_activity" in event.message.text:
                 from ..diy.diy import smiek_jd_zdjr
-                cmdtext = f"/cmd task smiek_jd_zdjr.js now"
+                cmdtext = f"/cmd task smiek_jd_zdjr.js desi JD_COOKIE 1 2 6 8-30 && task smiek_jd_zdjr.js desi JD_COOKIE 2 31-60"
                 await client.send_message(bot_id, cmdtext)
                 #await smiek_jd_zdjr()
             elif "jd_cjhy_activityId" in event.message.text:
                 from ..diy.diy import jd_cjhy_activityId
-                cmdtext = f"/cmd task jd_cjzdgf.js now"
+                cmdtext = f"/cmd task jd_cjzdgf.js desi JD_COOKIE 1 2 6 8-30 && task jd_cjzdgf.js desi JD_COOKIE 2 31-60"
                 await client.send_message(bot_id, cmdtext)
                 #await jd_cjhy_activityId()
             elif "FAV_SHOP_ID" in event.message.text:
