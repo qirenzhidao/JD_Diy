@@ -94,22 +94,22 @@ async def red(event):
         logger.error(f"错误--->{str(e)}")
 
 
-@client.on(events.NewMessage(chats=[-1001659538110, bot_id], pattern=r'export\s(jd_zdjr_activity|jd_cjhy_activity|FAV|RUSH_LZCLIENT).*=(".*"|\'.*\')'))
-#@client.on(events.NewMessage(chats=[-1001659538110, bot_id], pattern=r".*组队瓜分.*"))
+#@client.on(events.NewMessage(chats=[-1001659538110, bot_id], pattern=r'export\s(jd_zdjr_activity|jd_cjhy_activity|FAV|RUSH_LZCLIENT).*=(".*"|\'.*\')'))
+@client.on(events.NewMessage(chats=[-1001659538110, bot_id], pattern=r".*组队瓜分.*"))
 async def activityID(event):
     try:
-        text = event.message.text
-        if "jd_zdjr_activity" in text:
-            name = "组队瓜分1"
-        elif "jd_cjhy_activity" in text:
-            name = "组队瓜分2"
-        elif "FAV_SHOP" in text:
-            name = "关注有礼"
-        elif "RUSH_LZCLIENT" in text:
-            name = "转盘抽奖"
-        else:
-            return
-        msg = await jdbot.send_message(chat_id, f'【监控】 监测到`{name}` 环境变量！')
+        text = event.message.text      
+#        if "jd_zdjr_activity" in text:
+#            name = "组队瓜分1"
+#        elif "jd_cjhy_activity" in text:
+#            name = "组队瓜分2"
+#        elif "FAV_SHOP" in text:
+#            name = "关注有礼"
+#        elif "RUSH_LZCLIENT" in text:
+#            name = "转盘抽奖"
+#        else:
+#            return
+#        msg = await jdbot.send_message(chat_id, f'【监控】 监测到`{name}` 环境变量！')
         messages = event.message.text.split("\n")
         change = ""
         for message in messages:
