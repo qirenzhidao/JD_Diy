@@ -98,7 +98,8 @@ async def red(event):
 @client.on(events.NewMessage(chats=[-1001659538110, bot_id], pattern=r".*组队瓜分.*"))
 async def activityID(event):
     try:
-        text = event.message.text      
+        text = event.message.text
+        name = "组队瓜分"
 #        if "jd_zdjr_activity" in text:
 #            name = "组队瓜分1"
 #        elif "jd_cjhy_activity" in text:
