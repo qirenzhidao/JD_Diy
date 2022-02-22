@@ -94,13 +94,13 @@ async def red(event):
         logger.error(f"错误--->{str(e)}")
 
 
-@client.on(events.NewMessage(chats=myzdjr_chatIds, pattern=r'export\s(jd_zdjr_activity|jd_joinTeam_activity|FAV|RUSH_LZCLIENT).*=(".*"|\'.*\')'))
+@client.on(events.NewMessage(chats=myzdjr_chatIds, pattern=r'export\s(jd_zdjr_activity|jd_cjhy_activity|FAV|RUSH_LZCLIENT).*=(".*"|\'.*\')'))
 async def activityID(event):
     try:
         text = event.message.text
         if "jd_zdjr_activity" in text:
             name = "组队瓜分1"
-        elif "jd_joinTeam_activity" in text:
+        elif "jd_cjhy_activity" in text:
             name = "组队瓜分2"
         elif "FAV_SHOP" in text:
             name = "关注有礼"
@@ -151,9 +151,9 @@ async def activityID(event):
             if "jd_zdjr_activity" in event.message.text:
                 from ..diy.diy import smiek_jd_zdjr
                 await smiek_jd_zdjr()
-            elif "jd_joinTeam_activityId" in event.message.text:
-                from ..diy.diy import jd_joinTeam_activityId
-                await jd_joinTeam_activityId()
+            elif "jd_cjhy_activityId" in event.message.text:
+                from ..diy.diy import jd_cjhy_activityId
+                await jd_cjhy_activityId()
             elif "FAV_SHOP_ID" in event.message.text:
                 from ..diy.diy import jd_fav_shop_gift
                 await jd_fav_shop_gift()
@@ -305,7 +305,7 @@ async def myshoptoken(event):
 #         logger.error(f"错误--->{str(e)}")
 
 
-# @client.on(events.NewMessage(chats=myjoinTeam_chatIds, pattern=r"^export\sjd_joinTeam_activityId=\".*\"|.*='.*'"))
+# @client.on(events.NewMessage(chats=myjoinTeam_chatIds, pattern=r"^export\sjd_cjhy_activityId=\".*\"|.*='.*'"))
 # async def myjoinTeam(event):
 #     try:
 #         end = False
@@ -321,7 +321,7 @@ async def myshoptoken(event):
 #                 continue
 #             if configs.find(key) != -1:
 #                 configs = re.sub(f'{key}=(\"|\').*(\"|\')', kv, configs)
-#                 end = f"替换 jd_joinTeam_activityId 环境变量成功\n\n{env}"
+#                 end = f"替换 jd_cjhy_activityId 环境变量成功\n\n{env}"
 #             else:
 #                 if V4:
 #                     with open(f"{CONFIG_DIR}/config.sh", 'r', encoding='utf-8') as f2:
@@ -336,14 +336,14 @@ async def myshoptoken(event):
 #                     with open(f"{CONFIG_DIR}/config.sh", 'r', encoding='utf-8') as f2:
 #                         configs = f2.read()
 #                     configs += f'export {key}="{value}"\n'
-#                 end = f"新增 jd_joinTeam_activityId 环境变量成功\n\n{env}"
+#                 end = f"新增 jd_cjhy_activityId 环境变量成功\n\n{env}"
 #             with open(f"{CONFIG_DIR}/config.sh", 'w', encoding='utf-8') as f3:
 #                 f3.write(configs)
 #         if end:
 #             await jdbot.send_message(chat_id, end)
 #         try:
-#             from ..diy.diy import jd_joinTeam_activityId
-#             await jd_joinTeam_activityId()
+#             from ..diy.diy import jd_cjhy_activityId
+#             await jd_cjhy_activityId()
 #         except:
 #             None
 #     except Exception as e:

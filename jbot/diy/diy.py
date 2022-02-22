@@ -39,7 +39,11 @@ async def smiek_jd_zdjr():
         """
         # 例如下行代码代表在调用且运行此函数时，机器人给你发送一条消息
         # await jdbot.send_message(chat_id, "Hello World") # （注释此行即可）
-
+        if "jd_zdjr_activity" in event.message.text:
+            name = '组队瓜分京豆'
+            cmd = f'{TASK_CMD} smiek_jd_zdjr.js now'
+        else:
+            return
 
 
 
@@ -52,12 +56,16 @@ async def smiek_jd_zdjr():
         logger.error('something wrong,I\'m sorry\n' + str(e))
 
 
-async def jd_joinTeam_activityId():
+async def jd_cjhy_activityId():
     try:
         """
         try 部分则自由发挥即可
         """
-
+        if "jd_cjhy_activityId" in event.message.text:
+            name = 'cj组队瓜分京豆'
+            cmd = f'{TASK_CMD} jd_cjzdgf.js now'
+        else:
+            return
 
 
 
