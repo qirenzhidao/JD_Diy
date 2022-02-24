@@ -8,12 +8,14 @@ import os
 import re
 import sys
 import time
+import requests
 
 from telethon import events, TelegramClient
 
 from .. import chat_id, jdbot, logger, API_ID, API_HASH, PROXY_START, proxy, JD_DIR, TOKEN
 from ..bot.utils import cmd, V4, QL, CONFIG_SH_FILE, get_cks, AUTH_FILE
 from ..diy.utils import getbean, rwcon, my_chat_id, myzdjr_chatIds, shoptokenIds
+#from ..diy.post import post
 
 bot_id = int(TOKEN.split(":")[0])
 
@@ -55,6 +57,38 @@ async def follow(event):
         await jdbot.send_message(chat_id, f"{title}\n\n{name}\n{function}\n错误原因：{str(e)}\n\n{tip}")
         logger.error(f"错误--->{str(e)}")
 
+##########
+@client.on(events.NewMessage(chats=[-1001148869730, bot_id], pattern=r".*分京豆.*"))
+async def jdcmd(event):
+    try:
+        text = event.message.text
+        msg = await jdbot.send_message(chat_id, f'口令解析')
+        url = "https://api.jds.codes/jd/jCommand"
+        json = {
+            "code": text
+}
+        r = requests.post(url, data=json)
+        data = r.json()
+        re = data["data"]
+        jumpUrl = re['jumpUrl']
+        id = jumpUrl.split('=',1)[-1].split('&')[0]
+        if "cjhydz-" in jumpUrl:
+            Id = f'## 组队瓜分\nexport jd_cjhy_activityId="{id}"'
+        else:
+            Id = f'## 组队瓜分\nexport jd_zdjr_activityId="{id}"'
+#        cmdtext = f"-jd_cmd {text}"
+        await client.send_message(-1001784737851, Id)
+    except Exception as e:
+        title = "【💥错误💥】"
+        name = "文件名：" + os.path.split(__file__)[-1].split(".")[0]
+        function = "函数名：" + sys._getframe().f_code.co_name
+        tip = '建议百度/谷歌进行查询'
+        await jdbot.send_message(chat_id, f"{title}\n\n{name}\n{function}\n错误原因：{str(e)}\n\n{tip}")
+        logger.error(f"错误--->{str(e)}")
+
+
+
+
 
 @client.on(events.NewMessage(chats=[-1001159808620, my_chat_id], pattern=r".*京豆雨.*"))
 async def red(event):
@@ -95,7 +129,7 @@ async def red(event):
 
 
 #@client.on(events.NewMessage(chats=[-1001659538110, bot_id], pattern=r'export\s(jd_zdjr_activity|jd_cjhy_activity|FAV|RUSH_LZCLIENT).*=(".*"|\'.*\')'))
-@client.on(events.NewMessage(chats=[-1001659538110, bot_id], pattern=r".*组队瓜分.*"))
+@client.on(events.NewMessage(chats=[-1001659538110, -1001784737851, bot_id], pattern=r".*组队瓜分.*"))
 async def activityID(event):
     try:
         text = event.message.text
@@ -227,20 +261,8 @@ async def myshoptoken(event):
         await jdbot.send_message(chat_id, f"{title}\n\n{name}\n{function}\n错误原因：{str(e)}\n\n{tip}")
         logger.error(f"错误--->{str(e)}")
 
-@client.on(events.NewMessage(chats=[-1001148869730, bot_id], pattern=r".*分京豆.*"))
-async def jdcmd(event):
-    try:
-        text = event.message.text
-        msg = await jdbot.send_message(chat_id, f'口令解析')
-        cmdtext = f"-jd_cmd {text}"
-        await client.send_message(-1001784737851, cmdtext)
-    except Exception as e:
-        title = "【💥错误💥】"
-        name = "文件名：" + os.path.split(__file__)[-1].split(".")[0]
-        function = "函数名：" + sys._getframe().f_code.co_name
-        tip = '建议百度/谷歌进行查询'
-        await jdbot.send_message(chat_id, f"{title}\n\n{name}\n{function}\n错误原因：{str(e)}\n\n{tip}")
-        logger.error(f"错误--->{str(e)}")
+
+
 
 # @client.on(events.NewMessage(chats=-1001235868507, from_users=107550100, pattern=r'.*JD_Diy:master:.*'))
 # async def upbot(event):
